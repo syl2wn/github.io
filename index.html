@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20160101</title>
+    <style type="text/css">
+    	/*body {
+		  margin: 0;
+		  background: black;
+		}*/
+		.Rocket {
+			top: 0;
+			position: absolute;
+			display: none;
+		}
+		.time_class {
+			top: 0;
+			/*display: none;*/
+		}
+		canvas {
+		  position: absolute;
+		}
+		* {
+			margin:0;
+			padding:0;
+		}
+		html,body {
+			width:100%;
+			height:100%;
+			background-color:#ffc5b3;
+			position:absolute;
+			top:50%;
+			left:50%;
+			transform:translate(-50%,-50%);
+			-webkit-transform:translate(-50%,-50%);
+			-ms-transform:translate(-50%,-50%);
+			-moz-transform:translate(-50%,-50%);
+			-o-transform:translate(-50%,-50%);
+			background-image:radial-gradient(#ffeded,#ffc7c7);
+		}
+		
+		.textCon {
+			-webkit-user-select:none;
+			-moz-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+			width:700px;
+			height:60px;
+			margin:50px auto;
+		}
+		.text {
+			font-size:48px;
+		}
+		.heart {
+			width:200px;
+			height:200px;
+			background-color:#cc2a5d;
+			margin:200px auto;
+			position:relative;
+			transform:rotate(45deg);
+			animation:heart 1s ease-in infinite;
+		}
+		.heart::before,.heart::after {
+			content:'';
+			width:100%;
+			height:100%;
+			background-color:#cc2a5d;
+			border-radius:50%;
+		}
+		.heart::before {
+			position:absolute;
+			top:0;
+			left:0;
+			transform:translateX(-50%);
+		}
+		.heart::after {
+			position:absolute;
+			top:0;
+			left:0;
+			transform:translateY(-50%);
+		}
+		@keyframes heart {
+			0% {
+				transform:scale(0.8) rotate(45deg);
+				opacity:0.8;
+			}
+			50% {
+				transform:scale(1) rotate(45deg);
+				opacity:1;
+			}
+			100% {
+				transform:scale(0.8) rotate(45deg);
+				opacity:0.8;
+			}
+		}
+		/*小心*/
+		@keyframes hearts {
+			0% {
+				opacity:0;
+				transform:translateY(0%) rotate(45deg);
+			}
+			20% {
+				opacity:0.8;
+				transform:translateY(-20%) rotate(45deg);
+			}
+			100% {
+				opacity:0;
+				transform:translateY(-1000%) rotate(45deg);
+			}
+		}
+		.textCon .item {
+			position:absolute;
+			opacity:0;
+			background-color:#cc2a5d;
+			transform:rotate(deg);
+			animation:hearts 3s ease-in infinite;
+		}
+		.textCon .item::before,.textCon .item::after {
+			content:'';
+			width:100%;
+			height:100%;
+			background-color:#cc2a5d;
+			position:absolute;
+			top:0;
+			left:0;
+			border-radius:50%;
+		}
+		.textCon .item::before {
+			transform:translateX(-50%);
+		}
+		.textCon .item::after {
+			transform:translateY(-50%);
+		}
+		
+		.days-text {
+			margin-top:10px;
+			font-size:40px;
+			font-family:"Times New Roman",'Regular',cursive;
+			width:auto;
+			text-align:center;
+		}
+		.days {
+			font-size:40px;
+			width:auto;
+			text-align:center;
+		}
+		.words {
+			font-size:50px;
+			font-family:'Regular',cursive;
+			width:auto;
+			text-align:center;
+		}
+		.lasts {
+			position: absolute;
+			margin: auto;
+			top: 100px;
+			width:100%;
+			text-align:center;
+			display: none;
+		}
+		.last_second{
+			position: center;
+			font-size:251px;
+			font-family:"Times New Roman",'Regular',cursive;
+			width:auto;
+		}
+
+	</style>
+</head>
+<body>
+<div class="time_class">
+	<div class="textCon">
+	    <div class="words">今天是和你在一起的</div>
+	    <div class="days">
+	        <span class="days-text">第</span>
+	        <span class="days-number days-text">521</span>
+	        <span class="days-text">天</span>
+	        <span class="seconds days-text"></span>
+	    </div>
+
+	</div>
+	<div class="heart"></div>
+</div>
+<!-- 倒计时 -->
+<div class="lasts">
+	<span class="last_second"></span>
+</div>
+<!--  新的插件 -->
+<div class="Rocket">
+	<div style="text-align:center;clear:both;">
+	</div>
+		<canvas></canvas>
+		<canvas></canvas>
+		<canvas></canvas>
+</div>
+<script  src="index.js"></script>
+<script  src="https://syljoy.github.io/index.js"></script>
+
+
+
+<script type="text/javascript">
+	! function(e, t, a) {
+    	function n() {
+	        c(".love{width: 20px;height: 20px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.love:after,.love:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.love:after{top: -10px;}.love:before{left: -10px;}"), o(), r()
+	    }
+
+	    function r() {
+	        for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
+	        requestAnimationFrame(r)
+	    }
+
+	    function o() {
+	        var t = "function" == typeof e.onclick && e.onclick;
+	        e.onclick = function(e) {
+	            t && t(), i(e)
+	        }
+	    }
+
+	    function i(e) {
+	        var a = t.createElement("div");
+	        a.className = "love", d.push({
+	            el: a,
+	            x: e.clientX - 5,
+	            y: e.clientY - 5,
+	            scale: 1,
+	            alpha: 1,
+	            color: s()
+	        }), t.body.appendChild(a)
+	    }
+
+	    function c(e) {
+	        var a = t.createElement("style");
+	        a.type = "text/css";
+	        try {
+	            a.appendChild(t.createTextNode(e))
+	        } catch (t) {
+	            a.styleSheet.cssText = e
+	        }
+	        t.getElementsByTagName("head")[0].appendChild(a)
+	    }
+
+	    function s() {
+	        return "#cc2a5d"
+	    }
+	    var d = [];
+	    e.requestAnimationFrame = function() {
+	        return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function(e) {
+	            setTimeout(e, 1e3 / 60)
+	        }
+	    }(), n()
+	}(window, document);
+</script>
+
+<script type="text/javascript">
+	var arr = "2016-01-01 00:00:00".split(/[- :]/);
+	var box = document.getElementsByClassName('textCon')[0];
+
+	var rocket = document.getElementsByClassName('Rocket')[0];
+	var time_class = document.getElementsByClassName('time_class')[0];
+	var lasts = document.getElementsByClassName('lasts')[0];
+
+	function init() {
+	    var width = box.offsetWidth;
+	    var count = parseInt(width / 50 * 5);
+	    for (var i = 0; i < count; i++) {
+	        var size = parseInt(ran(60, 120) / 10);
+	        var ele = document.createElement('div');
+	        ele.classList.add('item');
+	        ele.style.width = size + 'px';
+	        ele.style.height = size + 'px';
+	        ele.style.left = ran(0, 95) + '%';
+	        ele.style.top = ran(20, 80) + '%';
+	        ele.style.animationDelay = ran(0, 30) / 10 + 's';
+	        box.appendChild(ele);
+	    }
+	}
+
+	function ran(min, max) {
+	    min = parseInt(min);
+	    max = parseInt(max);
+	    return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	var flag1 = 1;
+	var flag2 = 1;
+	function timer_start() {
+		
+	    var start_time = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+	    var duration = parseInt(new Date() - start_time) / 1000;
+	    var seconds = parseInt(duration % 60);
+
+	    var nowDate = new Date();
+
+	    var last_five_seconds = new Date("2021/01/01")
+
+	    var last_seconds = parseInt(((last_five_seconds - new Date()) / 1000))
+
+	    console.log("未来时间=", last_five_seconds)
+	    console.log("last_seconds=", last_seconds)
+
+	    if (last_seconds <= 5 && flag1 == 1 && flag2 == 1) {
+	    	flag1 == 0; 
+	    	// 倒计时
+	    	time_class.style.display = "none";
+	    	lasts.style.display = "block";
+	    	document.getElementsByClassName('last_second')[0].innerHTML = (last_seconds);
+	    }
+	    if (last_seconds <= 0 && flag2 == 1) {
+	    	flag2 = 0;
+	    	// 切换烟花
+			rocket.style.display = "block";
+			lasts.style.display = "none";
+			window.clearInterval(heart_time);
+			Rocket_start();
+	    }
+	    if (seconds < 10)
+	        seconds = "0" + seconds;
+	    duration = parseInt(duration / 60);
+	    var minutes = duration % 60;
+	    if (minutes < 10)
+	        minutes = "0" + minutes;
+	    duration = parseInt(duration / 60);
+	    var hours = duration % 24;
+	    if (hours < 10)
+	        hours = "0" + hours;
+	    duration = parseInt(duration / 24);
+	    var days = duration;
+	    document.getElementsByClassName('days-number')[0].innerHTML = ("" + days);
+	    document.getElementsByClassName('seconds')[0].innerHTML = (hours + " 时 " + minutes + " 分 " + seconds + " 秒");
+	}
+	var heart_time = window.setInterval(timer_start, 1000);
+	timer_start();
+	init();
+	
+</script>
+
+</body>
+</html>
